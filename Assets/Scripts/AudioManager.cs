@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioClip sceneSwitchSwoosh;
     [SerializeField] AudioClip pilotLaser;
+    [SerializeField] AudioClip gemPickupSFX;
 
     [Space(10)]
     [SerializeField] AudioSource musicChannel;
@@ -103,6 +104,8 @@ public class AudioManager : MonoBehaviour
     {
         PlaySoundEffect(pilotLaser);
     }
+
+    public void PlayGemPickup
 
     // This cycles the indices of the sfx channel list and makes "currentSFXChannel" appropriate throughout the class
     // - This is called by PlayMusic() and PlaySoundEffect() before stopping the sound/music, replacing the clip, and playing the new clip
