@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MyroAnimator : BasicAnimator
 {
+    public void BreathTrigger () 
+    {
+        thisAnimator.SetTrigger("Breath"); 
+        
+     }
 
     public void SetWalking(bool val)
     {

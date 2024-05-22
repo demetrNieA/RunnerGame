@@ -32,7 +32,7 @@ public class FireBreathControlVariant : MyroControlVariant
             newBreath.transform.position = mController.transform.position + (mController.transform.forward * 2);
             cooldownTimer = cooldownTime;
             coolingDown = true;
-            //mController.GetMyroAnimator().BreathTrigger();
+            mController.GetMyroAnimator().BreathTrigger();
         }
     }
 

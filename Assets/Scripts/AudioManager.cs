@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     [Space(10)]
     [SerializeField] AudioSource musicChannel;
     [SerializeField] List<AudioSource> sfxChannels;
+    [SerializeField] AudioSource voiceChannel;
 
     int currentSFXChannel = 0;
     int highestSFXChannel = 0;
@@ -105,7 +106,11 @@ public class AudioManager : MonoBehaviour
         PlaySoundEffect(pilotLaser);
     }
 
-    public void PlayGemPickup
+    public void PlayGemPickupSFX()
+    {
+        PlaySoundEffect(gemPickupSFX); 
+    }    
+
 
     // This cycles the indices of the sfx channel list and makes "currentSFXChannel" appropriate throughout the class
     // - This is called by PlayMusic() and PlaySoundEffect() before stopping the sound/music, replacing the clip, and playing the new clip
@@ -115,6 +120,24 @@ public class AudioManager : MonoBehaviour
         if (currentSFXChannel > highestSFXChannel)
             currentSFXChannel = 0;
 
+    }
+    #endregion
+
+    #region Voice Acting
+
+    public void PlayVoice(AudioClip voiceLine)
+    {
+        if (voiceLine == null)
+        {
+            return;
+        }
+
+        if (voiceChannel.clip != voiceLine)
+        {
+            voiceChannel.Stop();
+            voiceChannel.clip = voiceLine;
+            voiceChannel.Play();
+        }
     }
     #endregion
 }

@@ -16,6 +16,6 @@ public class Gem : BaseCollectable
     {
         Debug.Log("Collected");
         ResourceTracker.instance.AddGems(gemValue);
-        //AudioManager.instance.PlayGemPickupSFX();
+        AudioManager.instance.PlayGemPickupSFX();
     }
 }

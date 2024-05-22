@@ -11,7 +11,7 @@ public class ChargeControlVariant : MyroControlVariant
     public override void RunMovementUpdateVariant(MyroMovement moveScript)
     {
         moveScript.RunNormalMovementUpdate();
-        if (!moveScript.GetMyroController().ChargeKeyPressed() || oldPosition == transform.position)
+        if (!moveScript.GetMyroController().ChargeKeyPressed())
             moveScript.GetMyroController().EndControlVariant();
         oldPosition = transform.position;
     }

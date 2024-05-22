@@ -7,6 +7,9 @@ public class MyroController : MonoBehaviour
     [SerializeField] MyroControlVariant chargeVariant;
     [SerializeField] FLookControlVariant fLookControlVariant;
     [SerializeField] MyroControlVariant fireBreathControlVariant;
+    DialogModeControlVariant dialogControl = null;
+
+
     MyroControlVariant breathAlternateControlVariant;
     MyroControlVariant chargeAlternateControlVariant;
     MyroControlVariant storedControlVariant = null;
@@ -37,6 +40,8 @@ public class MyroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dialogControl != null) return;
+
         RunCharge();
 
         RunFLook();
@@ -57,7 +62,7 @@ public class MyroController : MonoBehaviour
         if (ChargeKeyPressed() && storedControlVariant == null
             && (chargeVariant != null) || chargeAlternateControlVariant != null)
         {
-            if(chargeAlternateControlVariant != null) AssignControlVariant(chargeAlternateControlVariant);
+            if (chargeAlternateControlVariant != null) AssignControlVariant(chargeAlternateControlVariant);
             else AssignControlVariant(chargeVariant);
         }
     }
@@ -67,7 +72,7 @@ public class MyroController : MonoBehaviour
         if (IsBreathAttackKeyPressed() && storedControlVariant == null
             && (fireBreathControlVariant != null || breathAlternateControlVariant != null))
         {
-            if(breathAlternateControlVariant != null) AssignControlVariant(breathAlternateControlVariant);
+            if (breathAlternateControlVariant != null) AssignControlVariant(breathAlternateControlVariant);
             else AssignControlVariant(fireBreathControlVariant);
         }
     }
@@ -98,6 +103,7 @@ public class MyroController : MonoBehaviour
         breathAlternateControlVariant = null;
         storedControlVariant = null;
         variantFlipped = true;
+        dialogControl = null;
     }
 
     public void SetBreathAlternateControlVariant(MyroControlVariant newBreath)
@@ -115,8 +121,13 @@ public class MyroController : MonoBehaviour
     {
         Camera.main.GetComponent<CameraControl>().SetStandardSettings();
     }
-    
-    
+
+    public void SetToDialogControls(DialogModeControlVariant dialogVariant)
+    {
+        AssignControlVariant(dialogVariant);
+        dialogControl = dialogVariant; 
+    }
+
     #endregion
 
     #region Key Presses
